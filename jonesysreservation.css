@@ -1,0 +1,122 @@
+html{
+	background-image: url(jonesysbackground.png)
+}
+#heading
+{
+	text-align: center;
+}
+#headingNav
+{
+	background-color: white;
+	margin:auto;
+	width:806px;
+	font-size: 30px;
+	font-family: 'Roboto', sans-serif;
+}
+#headingNav ul
+{
+	margin-top: -4px;
+	margin-right: 34.4px;
+	display: flex;
+	justify-content: space-between;
+}
+#headingNav li ,#footerNav li
+{
+	padding :10px;
+	list-style: none;
+}
+#headingNav a
+{
+	text-decoration: none;
+	color:black;
+}
+#headingNav a:hover,a:focus
+{
+	text-shadow: 2px 2px #F20201;
+}
+
+#breifIntro
+{
+	background-color: white;
+	width:806px;
+	text-align: center;
+	padding:20px;
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+}
+#friday,#saturday{
+	height :400px;
+	border:2px solid #F20201;
+	box-shadow: 0 0 20px rgb(249, 84, 84);
+}
+
+
+#footerNav a
+{
+	text-decoration: none;
+	color: white;
+
+}
+
+
+#footerNav ul
+{
+	display: flex;
+	justify-content: center;
+
+}
+section h3
+{
+	font-family: 'Roboto', sans-serif;
+	color:white;
+	text-align: center;
+	font-size: 40px;
+
+}
+#reservation
+{
+	margin: auto;
+	width:500px;	
+	text-align: center;
+
+	padding:8px;
+	color: white;
+	
+
+	border:2px solid #F20201;
+	background-color: black;
+	border-radius: 30px;
+	box-shadow: 0 0 20px rgb(249, 84, 84);
+}
+#reservation li
+{
+	list-style: none;
+	padding-bottom: 10px;
+}
+#reservation li >label
+{
+	font-size: 25px;
+	font-family: 'Roboto', sans-serif;
+}
+p{
+	display: inline-block;
+}
+
+fieldset
+{
+	border-style: none;
+}
+
+input , textarea ,select,button
+{
+	border:2px solid #aaa;
+	border-radius: 4px;
+	padding :8px;
+
+}
+input:focus ,textarea:focus ,select:focus
+{
+	border-color: #F20201;
+	box-shadow: 0 0 8px 0 #F20201;
+}
+
