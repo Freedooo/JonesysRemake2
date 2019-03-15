@@ -1,3 +1,8 @@
+
+<?php
+	include('connect.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,13 +21,13 @@
 	<nav id = "headingNav">
 		<ul>
 			<li><a href="index.html">Home</a></li>
-			<li><a href="jonesysmenu.html">Menu</a></li>
-			<li><a href="jonesysreservation.html">Reservation</a></li>
+			<li><a href="jonesysmenu.php">Menu</a></li>
+			<li><a href="jonesysreservation.php">Reservation</a></li>
 		</ul>
 	</nav>
 
 	<section>
-		<form id="reservationform" action="jonesyshome.html">
+		<form id="reservationform" action="process_post.php" method ="POST">
 			<fieldset>
 				<h3>Make a reservation!</h3>
 				<div id="reservation">
@@ -54,22 +59,19 @@
 
 						<li>
 							<label for="section">Section?</label>
-							<select id="section">
-								<option>Dining Room</option>
-								<option>Lounge</option>
+							<select id="section" name = "section">
+								<option value = 'dining_room'>Dining Room</option>
+								<option value = 'lounge'>Lounge</option>
 								
 							</select>
 						</li>
 
 						<li>
 							<label for="comments">Extra comments</label>
-							<textarea id ="comments" rows="4" cols="50"></textarea>
+							<textarea name = 'comments' id ="comments" rows="4" cols="50"></textarea>
 						</li>
-
-
-
 					</ol>
-					<button type="submit" id="submit">Reserve a table</button>
+					<button type="submit" id="submit" name ='command' value ='Create'>Reserve a table</button>
 					<button type="reset" id="clear">Reset</button>
 				</div>
 			</fieldset>

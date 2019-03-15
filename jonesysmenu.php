@@ -1,3 +1,9 @@
+
+
+<?php
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +21,7 @@
 	<nav id = "headingNav">
 		<ul>
 			<li><a href="index.html">Home</a></li>
-			<li><a href="jonesysmenu.html">Menu</a></li>
+			<li><a href="jonesysmenu.php">Menu</a></li>
 			<li><a href="jonesysreservation.html">Reservation</a></li>
 		</ul>
 	</nav>
