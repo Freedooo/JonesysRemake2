@@ -1,6 +1,7 @@
 html{
 	background-image: url(jonesysbackground.png)
 }
+
 #heading
 {
 	text-align: center;
@@ -119,4 +120,5 @@ input:focus ,textarea:focus ,select:focus
 	border-color: #F20201;
 	box-shadow: 0 0 8px 0 #F20201;
 }
+
 

@@ -25,9 +25,11 @@
 		<ul>
 			<li><a href="index.html">Home</a></li>
 			<li><a href="jonesysmenu.php">Menu</a></li>
-			<li><a href="jonesysreservation.html">Reservation</a></li>
+			<li><a href="jonesysreservation.php">Reservation</a></li>
+			<li><a href="jonesysreviews.php">Reviews</a></li>
 		</ul>
-    </nav>
+		</nav>
+		
     
 </body>
 </html>
