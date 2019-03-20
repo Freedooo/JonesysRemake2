@@ -66,7 +66,7 @@ html{
 	justify-content: center;
 
 }
-section h3
+section h3,h3
 {
 	font-family: 'Roboto', sans-serif;
 	color:white;
@@ -119,6 +119,17 @@ input:focus ,textarea:focus ,select:focus
 {
 	border-color: #F20201;
 	box-shadow: 0 0 8px 0 #F20201;
+}
+
+#register
+{
+	text-align: center;
+	color: white;
+}
+#register input
+{
+	margin: 0px auto;
+	display: flex;
 }
 
 
