@@ -1,6 +1,7 @@
 
 
 <?php
+    require('authenticate.php');
     include('connect.php');
     $query = "SELECT * FROM reservation";
     $statement = $db->prepare($query);

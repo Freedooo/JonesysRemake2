@@ -1,7 +1,8 @@
 
 <?php
     include('connect.php');
-    
+    $message = false;
+
     if($_POST['command'] == "Create")
     {
         $date = $_POST['date'];
@@ -66,23 +67,53 @@
 
     if($_POST['command'] =='Register')
     {
-        $error = false;
+        
 
         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
         $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $repassword = filter_input(INPUT_POST, 'repassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if($password == $repassword)
         {
-            $insertQuery = "INSERT INTO users (email,password) values (:email,:password)";
+            $hashed_password = password_hash($password,PASSWORD_DEFAULT);
+
+
+            $insertQuery = "INSERT INTO users (email,password) values (:email,:hashed_password)";
             $statement = $db->prepare($insertQuery);
             $statement->bindValue(':email', $email);  
-            $statement->bindValue(':password', $password);  
+            $statement->bindValue(':hashed_password', $hashed_password);  
             $statement->execute(); 
+
+            $message = "Account Created Successfully";
         }
         else
         {
-            $error = true;
+            $message = "Your passwords dont match, please <a href='jonesysregister.php'>try again</a>";
         }
+    }
+
+    if($_POST['command'] =='login')
+    {
+        if(isset($_POST['email']) and isset($_POST['password']))
+        {
+            $userEmail = $_POST['email'];
+            $userPassword = $_POST['password'];
+
+            $query = "SELECT email,password FROM users WHERE email = :email LIMIT 1";
+            $statement = $db->prepare($query);
+            $statement->bindValue(':email', $userEmail);
+            $statement->execute();
+            $users = $statement->fetchall();
+
+            if(password_verify($userPassword,$users[0]['password']))
+            {  
+                $message = "You have logged in successfully";
+            }
+            else
+            {
+                $message = "Incorrect Email or Password";
+            }
+        }
+
     }
 ?>
 
@@ -113,13 +144,9 @@
 			<li><a href="jonesyslogout.php">Log out</a></li>
 		</ul>
     </nav>
-    <?php if($error): ?>
+    <?php if($message): ?>
     <div>
-        <h3>Your passwords dont match, please <a href="jonesysregister.php"> try again</a></h3>
-    </div>
-    <?php else:?>
-    <div>
-        <h3>Account created successfully</h3>
+        <h3><?=$message?></h3>
     </div>
     <?php endif ?>
 	<footer>
