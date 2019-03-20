@@ -13,7 +13,7 @@ html{
 	background-color: white;
 	margin:auto;
 	width:806px;
-	font-size: 30px;
+	font-size: 20px;
 	font-family: 'Roboto', sans-serif;
 }
 
@@ -36,6 +36,7 @@ html{
 {
 	text-decoration: none;
 	color:black;
+	
 }
 #headingNav a:hover,a:focus
 {
