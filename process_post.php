@@ -2,7 +2,7 @@
 <?php
     include('connect.php');
     $message = false;
-
+    session_start();
     if($_POST['command'] == "Create")
     {
         $date = $_POST['date'];
@@ -75,8 +75,7 @@
         if($password == $repassword)
         {
             $hashed_password = password_hash($password,PASSWORD_DEFAULT);
-
-
+            
             $insertQuery = "INSERT INTO users (email,password) values (:email,:hashed_password)";
             $statement = $db->prepare($insertQuery);
             $statement->bindValue(':email', $email);  
@@ -91,30 +90,38 @@
         }
     }
 
+    
     if($_POST['command'] =='login')
     {
-        if(isset($_POST['email']) and isset($_POST['password']))
+        if(!isset($_SESSION['LoggedIn']))
         {
-            $userEmail = $_POST['email'];
-            $userPassword = $_POST['password'];
-
-            $query = "SELECT email,password FROM users WHERE email = :email LIMIT 1";
-            $statement = $db->prepare($query);
-            $statement->bindValue(':email', $userEmail);
-            $statement->execute();
-            $users = $statement->fetchall();
-
-            if(password_verify($userPassword,$users[0]['password']))
-            {  
-                $message = "You have logged in successfully";
-            }
-            else
+            if(isset($_POST['email']) and isset($_POST['password']))
             {
-                $message = "Incorrect Email or Password";
+                $userEmail = $_POST['email'];
+                $userPassword = $_POST['password'];
+
+                $query = "SELECT email,password FROM users WHERE email = :email LIMIT 1";
+                $statement = $db->prepare($query);
+                $statement->bindValue(':email', $userEmail);
+                $statement->execute();
+                $users = $statement->fetchall();
+
+                if(password_verify($userPassword,$users[0]['password']))
+                {  
+                    $message = "You have logged in successfully";
+                    $_SESSION['LoggedIn'] = true;
+                }
+                else
+                {
+                    $message = "Incorrect Email or Password";
+                }
             }
         }
-
-    }
+        else
+        {
+            $message = "You are already logged in";
+        }
+    } 
 ?>
 
 
