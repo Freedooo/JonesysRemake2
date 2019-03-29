@@ -132,12 +132,17 @@ input:focus ,textarea:focus ,select:focus
 	display: flex;
 }
 
-#login
+#login,#comment
 {
 	text-align: center;
 	color: white;
 }
 #login input
+{
+	margin: 0px auto;
+	display: flex;
+}
+#comment input
 {
 	margin: 0px auto;
 	display: flex;

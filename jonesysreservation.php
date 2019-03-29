@@ -1,6 +1,8 @@
 
 <?php
 	include('connect.php');
+
+
 ?>
 
 <!DOCTYPE html>
@@ -74,6 +76,9 @@
 						<li>
 							<label for="comments">Extra comments</label>
 							<textarea name = 'comments' id ="comments" rows="4" cols="50"></textarea>
+						</li>
+						<li>
+							<img src="captcha.php"/><input type="text" name="captcha">
 						</li>
 					</ol>
 					<button type="submit" id="submit" name ='command' value ='Create'>Reserve a table</button>
