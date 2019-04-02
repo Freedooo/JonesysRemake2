@@ -55,25 +55,43 @@
 
 	<div class = "review">
 		<?php foreach($reviews as $review) :?>
-			<h1>Title: <?=$review['title']?></h1>
-			<p>Comment:<?=$review['comment']?> </p>
+			<section>
+				<h1>Title: <?=$review['title']?></h1>
+				<p>Comment:<?=$review['comment']?> </p>
+				<p>
+                <small>
+                
+                <a href="edit.php?id=<?=$id[$i] ?>">Show all comments</a>
+                </small>
+            </p>
+			</section>
+			
 		<?php endforeach ?>
 		
 	</div>
 	
-	<h3>Make a review<a href="viewreview.php">view reviews</a></h3>
     <div id = 'comment'>
-        <form action="jonesysreviews.php" method ='POST'>
-            <label for="title">Title:</label>
-            <input type="text" name="title" required>
+	<fieldset>
+	<h3>Make a review<a href="viewreview.php">view reviews</a></h3>
+
+	<form action="jonesysreviews.php" method ='POST'>
+			<p>
+				<label for="title">Title:</label>
+				<input type="text" name="title" required>
+			</p>
+            
             
             <p>Comment:</p>
-            <textarea name="comment" id="" cols="25" rows="5"></textarea>
-
-            <button type="submit" id="submit" name ='command' value ='submit_review'>Submit Review</button>
+			<p>
+				<textarea name="comment" id="" cols="25" rows="5"></textarea>
+            	<button type="submit" id="submit" name ='command' value ='submit_review'>Submit Review</button>
+			</p>
+            
             
 
         </form>
+	</fieldset>
+        
     </div>
 		
     

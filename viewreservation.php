@@ -8,6 +8,8 @@
     $statement->execute();
     $results = $statement->fetchAll();
     //var_dump($results[0]['fullname']);
+
+    if()
 ?>
 
 <!DOCTYPE html>

@@ -114,4 +114,9 @@ button{
 .review{
 	text-align: center;
 	color:white;
+	border: 2px solid white;
+}
+section
+{
+	border:2px solid white;
 }
