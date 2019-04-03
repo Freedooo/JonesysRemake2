@@ -7,7 +7,6 @@
 	$selectstatement = $db->prepare($query);
 	$selectstatement->execute();
 	$reviews = $selectstatement->fetchAll();
-	
 
 	//Insert for reviews
     if($_POST)
@@ -61,12 +60,13 @@
 	
 		$title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 		$comment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-		// $image_name = $_FILES['image']['name'];
-		$insertQuery = "INSERT INTO reviews (title,comment) values (:title,:comment)";
+		$image = $_FILES['image']['name'];
+		$insertQuery = "INSERT INTO reviews (title,comment,image) values (:title,:comment,:image)";
 		$statement = $db->prepare($insertQuery);
 		
 		$statement->bindValue(':title', $title);  
 		$statement->bindValue(':comment', $comment);  
+		$statement->bindValue(':image', $image); 
 		
 		$statement->execute(); 
 		
@@ -110,12 +110,14 @@
 			<section>
 				<h1>Title: <?=$review['title']?></h1>
 				<p>Comment:<?=$review['comment']?> </p>
+				<?php if(strlen($review['image']) > 0) : ?>
+				<img src="uploads\<?=$review['image']?>" alt="<?=$review['image']?>">
+				<?php endif ?>
 				<p>
-                <small>
-                
-                <a href="fullcomment.php?id=<?=$review['id'] ?>">Show all comments</a>
-                </small>
-            </p>
+					<small>
+						<a href="fullcomment.php?id=<?=$review['id'] ?>">Show all comments</a>
+					</small>
+            	</p>
 			</section>
 			
 		<?php endforeach ?>
