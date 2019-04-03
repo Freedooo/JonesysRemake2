@@ -142,6 +142,9 @@ input:focus ,textarea:focus ,select:focus
 	margin: 0px auto;
 	display: flex;
 }
+#reservation_table{
+	text-align: center;
+}
 
 
 
