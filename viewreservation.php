@@ -3,13 +3,24 @@
 <?php
     require('authenticate.php');
     include('connect.php');
-    $query = "SELECT * FROM reservation";
+    // $query = "SELECT * FROM reservation";
+    // $statement = $db->prepare($query);
+    // $statement->execute();
+    // $results = $statement->fetchAll();
+    //var_dump($results[0]['fullname']);
+    if($_GET['date_sort'] == 1)
+    {
+        $query = "SELECT * FROM reservation ORDER BY date DESC";
+    }
+    else
+    {
+        $query = "SELECT * FROM reservation";
+    }
     $statement = $db->prepare($query);
     $statement->execute();
     $results = $statement->fetchAll();
-    //var_dump($results[0]['fullname']);
 
-    if()
+    
 ?>
 
 <!DOCTYPE html>
@@ -57,6 +68,13 @@
             </tr>
         <?php endforeach ?>
     </table>
+    <form action="viewreservation.php" action ="GET">
+        <p>
+        Sort by:
+        <button type="submit" name ='date_sort' value ='1'>DATE</button>
+        <button type="submit" name ='norm_sort' value ='1'>ORDERLY</button>
+        </p>
+    </form>
 
 	<footer>
 		<nav id = "footerNav">
