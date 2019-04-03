@@ -1,7 +1,9 @@
 
 <?php
+	include 'C:/xampp/htdocs/WebDev2FinalProject/php-image-resize-master/lib/ImageResize.php';
+	use \Gumlet\ImageResize;
     require('connect.php');
-	$query = "SELECT * FROM reviews ORDER BY date DESC";
+	$query = "SELECT * FROM reviews ORDER BY date DESC limit 5";
 	$selectstatement = $db->prepare($query);
 	$selectstatement->execute();
 	$reviews = $selectstatement->fetchAll();
@@ -10,20 +12,70 @@
 	//Insert for reviews
     if($_POST)
     {
-        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-		$comment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+		// file_upload_path() - Safely build a path String that uses slashes appropriate for our OS.
+		// Default upload path is an 'uploads' sub-folder in the current folder.
+		function file_upload_path($original_filename, $upload_subfolder_name = 'uploads') 
+		{
+		$current_folder = dirname(__FILE__);
 		
-        $insertQuery = "INSERT INTO reviews (title,comment) values (:title,:comment)";
-        $statement = $db->prepare($insertQuery);
-        
-        $statement->bindValue(':title', $title);  
-        $statement->bindValue(':comment', $comment);  
-        
+		// Build an array of paths segment names to be joins using OS specific slashes.
+		$path_segments = [$current_folder, $upload_subfolder_name, basename($original_filename)];
+		
+		// The DIRECTORY_SEPARATOR constant is OS specific.
+		return join(DIRECTORY_SEPARATOR, $path_segments);
+		}
+
+		// isAllowedFile() - Checks the mime-type & extension of the uploaded file for "image-ness".
+		function isAllowedFile($temporary_path, $new_path) {
+			$allowed_mime_types      = ['image/gif', 'image/jpeg', 'image/png'];
+			$allowed_file_extensions = ['gif', 'jpg', 'jpeg', 'png'];
+			
+			$actual_file_extension   = pathinfo($new_path, PATHINFO_EXTENSION);
+			//var_dump($actual_file_extension);
+
+			$actual_mime_type        = mime_content_type($temporary_path); // getimagesize($temporary_path)['mime'];
+			//var_dump($actual_mime_type);
+
+
+			$file_extension_is_valid = in_array($actual_file_extension, $allowed_file_extensions);
+			$mime_type_is_valid      = in_array($actual_mime_type, $allowed_mime_types);
+			
+			return $file_extension_is_valid && $mime_type_is_valid;
+		}
+		
+		$image_upload_detected = isset($_FILES['image']) && ($_FILES['image']['error'] === 0);
+		$upload_error_detected = isset($_FILES['image']) && ($_FILES['image']['error'] > 0);
+
+		if ($image_upload_detected) 
+		{ 
+			$image_filename        = $_FILES['image']['name'];
+			$temporary_image_path  = $_FILES['image']['tmp_name'];
+			$new_image_path        = file_upload_path($image_filename);
+
+			if (isAllowedFile($temporary_image_path, $new_image_path)) 
+			{
+				move_uploaded_file($temporary_image_path, $new_image_path);
+			}
+
+		}
+	
+		$title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+		$comment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+		// $image_name = $_FILES['image']['name'];
+		$insertQuery = "INSERT INTO reviews (title,comment) values (:title,:comment)";
+		$statement = $db->prepare($insertQuery);
+		
+		$statement->bindValue(':title', $title);  
+		$statement->bindValue(':comment', $comment);  
+		
 		$statement->execute(); 
 		
 		header('Location: jonesysreviews.php');
 		exit();
-    }
+		
+	}
+	
+	
 ?>
 
 
@@ -61,7 +113,7 @@
 				<p>
                 <small>
                 
-                <a href="edit.php?id=<?=$id[$i] ?>">Show all comments</a>
+                <a href="fullcomment.php?id=<?=$review['id'] ?>">Show all comments</a>
                 </small>
             </p>
 			</section>
@@ -74,22 +126,19 @@
 	<fieldset>
 	<h3>Make a review<a href="viewreview.php">view reviews</a></h3>
 
-	<form action="jonesysreviews.php" method ='POST'>
-			<p>
-				<label for="title">Title:</label>
-				<input type="text" name="title" required>
-			</p>
-            
-            
-            <p>Comment:</p>
-			<p>
-				<textarea name="comment" id="" cols="25" rows="5"></textarea>
-            	<button type="submit" id="submit" name ='command' value ='submit_review'>Submit Review</button>
-			</p>
-            
-            
-
-        </form>
+	<form action="jonesysreviews.php" method ='POST' enctype='multipart/form-data'>
+		<p>
+			<label for="title">Title:</label>
+			<input type="text" name="title" required>
+		</p>
+		<p>Comment:</p>
+		<p>
+			<textarea name="comment" id="" cols="25" rows="5"></textarea>
+		</p>
+			<label for='image'>Image Filename:</label>
+			<input type='file' name='image' id='image'>
+			<button type="submit" id="submit" name ='command' value ='submit_review'>Submit Review</button>
+		</form>
 	</fieldset>
         
     </div>
