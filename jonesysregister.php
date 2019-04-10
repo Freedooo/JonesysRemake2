@@ -25,7 +25,7 @@
 		</ul>
     </nav>
     
-    <h3>Register for an account</h3>
+    <h3>Register for an account <a href="viewusers.php">view users</a></h3>
     <div id = 'register'>
         <form action="process_post.php" method ='POST'>
             <label for="email">Enter an Email:</label>

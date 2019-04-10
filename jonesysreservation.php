@@ -78,7 +78,7 @@
 							<textarea name = 'comments' id ="comments" rows="4" cols="50"></textarea>
 						</li>
 						<li>
-							<img src="captcha.php"/><input type="text" name="captcha">
+							<img src="captcha.php" alt = "Captcha Img"/><input type="text" name="captcha">
 						</li>
 					</ol>
 					<button type="submit" id="submit" name ='command' value ='Create'>Reserve a table</button>
