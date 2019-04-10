@@ -19,11 +19,14 @@
 	</div>
 
 	<nav id = "headingNav">
-		<ul>
+	<ul>
 			<li><a href="index.html">Home</a></li>
 			<li><a href="jonesysmenu.php">Menu</a></li>
 			<li><a href="jonesysreservation.php">Reservation</a></li>
 			<li><a href="jonesysreviews.php">Reviews</a></li>
+			<li><a href="jonesysregister.php">Register</a></li>
+			<li><a href="jonesyslogin.php">Log in</a></li>
+			<li><a href="jonesyslogout.php">Log out</a></li>
 		</ul>
 	</nav>
 	
@@ -45,11 +48,15 @@
 	</section>
 	<footer>
 		<nav id = "footerNav">
-			<ul>
-				<li><a href="index.html">Home</a></li>
-				<li><a href="jonesysmenu.html">Menu</a></li>
-				<li><a href="jonesysreservation.html">Reservation</a></li>
-			</ul>
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="jonesysmenu.php">Menu</a></li>
+			<li><a href="jonesysreservation.php">Reservation</a></li>
+			<li><a href="jonesysreviews.php">Reviews</a></li>
+			<li><a href="jonesysregister.php">Register</a></li>
+			<li><a href="jonesyslogin.php">Log in</a></li>
+			<li><a href="jonesyslogout.php">Log out</a></li>
+		</ul>
 		</nav>
 	</footer>
 </body>
