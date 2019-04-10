@@ -145,6 +145,12 @@ input:focus ,textarea:focus ,select:focus
 #reservation_table{
 	text-align: center;
 }
+.users
+{
+	background-color: white;
+	width:800px;
+	margin:0px auto;
+}
 
 
 
