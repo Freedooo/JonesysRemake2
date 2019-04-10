@@ -71,6 +71,7 @@
     <div class = 'sub_comment'>
     <?php foreach($subcomments as $subcomment): ?>
         <p><?=$subcomment['comment']?></p>
+        
     <?php endforeach ?>
     </div>
     <form action="fullcomment.php?id=<?=$review[0]['id'] ?>" method ='POST'>

@@ -9,11 +9,17 @@
 	$reviews = $selectstatement->fetchAll();
 	$logged_in = false;
 	session_start();
-
-
+	if($_POST)
+	{
+		if($_POST['command'] =='search')
+	  {
+		  	echo "Searched";
+	  }
+	}
+	  
 	//Insert for reviews
-    if($_POST)
-    {
+		if($_POST)
+		{
 		// file_upload_path() - Safely build a path String that uses slashes appropriate for our OS.
 		// Default upload path is an 'uploads' sub-folder in the current folder.
 		function file_upload_path($original_filename, $upload_subfolder_name = 'uploads') 
@@ -76,6 +82,7 @@
 		header('Location: jonesysreviews.php');
 		exit();
 	}
+	
 ?>
 
 <!DOCTYPE html>
@@ -104,6 +111,12 @@
 			<li><a href="jonesysreviews.php">Reviews</a></li>
 		</ul>
 	</nav>
+
+	<form action="jonesysreviews.php" method = "POST">
+			<label for="search">Seach by Title:</label>
+			<input type='text' name='search' id='search'>
+			<input type="submit" name = "command" value = "search">
+	</form>
 	<?php if(isset($_SESSION['LoggedIn'])): ?>
 	<div class = "review">
 		<?php foreach($reviews as $review) :?>
@@ -114,8 +127,10 @@
 						<p>
 							<small>
 								<a href="fullcomment.php?id=<?=$review['id'] ?>">View Comments</a>
+								<a href="editcomment.php?id=<?=$review['id'] ?>">Edit Comments</a>
 							</small>
 						</p>
+						
 					</div>
 					
 					<div class = review_comment>
@@ -148,12 +163,12 @@
     </div>
 
 		<?php elseif(!isset($_SESSION['LoggedIn'])): ?>
-		<div id = review_login_error>
-			<h3>You must Sign in to make a review</h3>
+		<div id = 'review_login_error'>
+			<h3>You must Sign in to make a review <?= phpversion() ?></h3>
 		</div>
 			
 		<?php endif ?>
 
 		
 </body>
-</html>
+</html> 

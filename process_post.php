@@ -122,6 +122,16 @@
             $message = "You are already logged in";
         }
     }
+    if($_POST['command'] == 'delete_comment')
+    {
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+        $query = "DELETE FROM reviews WHERE id = :id";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        header('Location: jonesysreviews.php');
+        exit();
+    }
     
 ?>
 
