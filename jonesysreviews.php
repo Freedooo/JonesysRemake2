@@ -7,6 +7,9 @@
 	$selectstatement = $db->prepare($query);
 	$selectstatement->execute();
 	$reviews = $selectstatement->fetchAll();
+	$logged_in = false;
+	session_start();
+
 
 	//Insert for reviews
     if($_POST)
@@ -72,12 +75,8 @@
 		
 		header('Location: jonesysreviews.php');
 		exit();
-		
 	}
-	
-	
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -90,6 +89,7 @@
 	<link rel="stylesheet" type="text/css" href="jonesysmenu.css">
 </head>
 <body>
+
     <div id ="heading">
 		<img src="friday.png" id="friday" alt="friday">
 		<img src="jonesystitle.png" id="titlePic" alt="title">
@@ -104,47 +104,56 @@
 			<li><a href="jonesysreviews.php">Reviews</a></li>
 		</ul>
 	</nav>
-
+	<?php if(isset($_SESSION['LoggedIn'])): ?>
 	<div class = "review">
 		<?php foreach($reviews as $review) :?>
 			<section>
-				<h1>Title: <?=$review['title']?></h1>
-				<p>Comment:<?=$review['comment']?> </p>
-				<?php if(strlen($review['image']) > 0) : ?>
-				<img src="uploads\<?=$review['image']?>" alt="<?=$review['image']?>">
-				<?php endif ?>
-				<p>
-					<small>
-						<a href="fullcomment.php?id=<?=$review['id'] ?>">Show all comments</a>
-					</small>
-            	</p>
+				<div class = "review_content">
+					<div class = review_title>
+						<h1>Title: <?=$review['title']?></h1>
+						<p>
+							<small>
+								<a href="fullcomment.php?id=<?=$review['id'] ?>">View Comments</a>
+							</small>
+						</p>
+					</div>
+					
+					<div class = review_comment>
+						<p>Comment:<?=$review['comment']?> </p>
+						<?php if(strlen($review['image']) > 0) : ?>
+						<img src="uploads\<?=$review['image']?>" alt="<?=$review['image']?>">
+						<?php endif ?>
+					</div>
+					
+					
+				</div>
 			</section>
-			
 		<?php endforeach ?>
-		
 	</div>
-	
-    <div id = 'comment'>
-	<fieldset>
-	<h3>Make a review<a href="viewreview.php">view reviews</a></h3>
 
-	<form action="jonesysreviews.php" method ='POST' enctype='multipart/form-data'>
-		<p>
-			<label for="title">Title:</label>
-			<input type="text" name="title" required>
-		</p>
-		<p>Comment:</p>
-		<p>
-			<textarea name="comment" id="" cols="25" rows="5"></textarea>
-		</p>
+    <div id = 'comment'>
+		<h3>Make a review</h3>
+		<form action="jonesysreviews.php" method ='POST' enctype='multipart/form-data'>
+			<p>
+				<label for="title">Title:</label>
+				<input type="text" name="title" required>
+			</p>
+			<p>Comment:</p>
+			<p><textarea name="comment" id="" cols="25" rows="5"></textarea></p>
 			<label for='image'>Image Filename:</label>
 			<input type='file' name='image' id='image'>
 			<button type="submit" id="submit" name ='command' value ='submit_review'>Submit Review</button>
 		</form>
-	</fieldset>
-        
-    </div>
 		
-    
+    </div>
+
+		<?php elseif(!isset($_SESSION['LoggedIn'])): ?>
+		<div id = review_login_error>
+			<h3>You must Sign in to make a review</h3>
+		</div>
+			
+		<?php endif ?>
+
+		
 </body>
 </html>

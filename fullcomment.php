@@ -14,7 +14,7 @@
 	$selectstatement->execute();
     $review = $selectstatement->fetchAll();
     
-    $querySubcomment = "SELECT * FROM subcomment ";
+    $querySubcomment = "SELECT * FROM subcomment WHERE commentIDFK = $getID ";
 	$selectSubcomment = $db->prepare($querySubcomment);
 	$selectSubcomment->execute();
 	$subcomments= $selectSubcomment->fetchAll();
@@ -60,7 +60,7 @@
 			<li><a href="jonesysreviews.php">Reviews</a></li>
 		</ul>
     </nav>
-    <section>
+    <section id = 'full_comment'>
 				<h1>Title: <?=$review[0]['title']?></h1>
 				<p>Comment:<?=$review[0]['comment']?> </p>
 				<?php if(strlen($review[0]['image']) > 0) : ?>
@@ -68,10 +68,11 @@
 				<?php endif ?>
     </section>
 
+    <div class = 'sub_comment'>
     <?php foreach($subcomments as $subcomment): ?>
         <p><?=$subcomment['comment']?></p>
     <?php endforeach ?>
-    
+    </div>
     <form action="fullcomment.php?id=<?=$review[0]['id'] ?>" method ='POST'>
 		<p>Comment:</p>
 		<p><textarea name="comment" id="" cols="25" rows="5"></textarea></p>

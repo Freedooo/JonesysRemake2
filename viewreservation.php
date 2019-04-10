@@ -8,7 +8,8 @@
     // $statement->execute();
     // $results = $statement->fetchAll();
     //var_dump($results[0]['fullname']);
-    if($_GET['date_sort'] == 1)
+    
+    if(isset($_GET['date_sort']))
     {
         $query = "SELECT * FROM reservation ORDER BY date DESC";
     }
@@ -45,29 +46,31 @@
             <li><a href="jonesysreviews.php">Reviews</a></li>
 		</ul>
     </nav>
-    
-    <table style = "color:white;">
-        <tr>
-            <th>Date</th>
-            <th>Full Name</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Section</th>
-            <th>Comments</th>
-            <th>Option</th>
-        </tr>
-        <?php foreach($results as $result): ?>
+    <div id = "reservation_table">
+        <table style = "color:white;">
             <tr>
-                <td><?=$result['date']?></td>
-                <td><?=$result['fullname']?></td>
-                <td><?=$result['phone']?></td>
-                <td><?=$result['email']?></td>
-                <td><?=$result['section']?></td>
-                <td><?=$result['comments']?></td>
-                <td><a href="editreservation.php?id=<?=$result['id'] ?>">edit</a></td>
+                <th>Date</th>
+                <th>Full Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Section</th>
+                <th>Comments</th>
+                <th>Option</th>
             </tr>
-        <?php endforeach ?>
-    </table>
+            <?php foreach($results as $result): ?>
+                <tr>
+                    <td><?=$result['date']?></td>
+                    <td><?=$result['fullname']?></td>
+                    <td><?=$result['phone']?></td>
+                    <td><?=$result['email']?></td>
+                    <td><?=$result['section']?></td>
+                    <td><?=$result['comments']?></td>
+                    <td><a href="editreservation.php?id=<?=$result['id'] ?>">edit</a></td>
+                </tr>
+            <?php endforeach ?>
+        </table>
+    </div>
+    
     <form action="viewreservation.php" action ="GET">
         <p>
         Sort by:
