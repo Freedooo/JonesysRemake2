@@ -1,8 +1,9 @@
 
 
 <?php
-    require('connect.php');
-    $query = "SELECT * FROM reservation";
+	require('connect.php');
+	require('authenticate.php');
+    $query = "SELECT * FROM users";
     $statement = $db->prepare($query);
     $statement->execute();
     $results = $statement->fetchAll();
@@ -13,7 +14,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Jonesy's Resturaunt + Lounge | Reservation</title>
-	<link rel="stylesheet" type="text/css" href="jonesysreservation.css">
+	<link rel="stylesheet" type="text/css" href="reservation_register_login_users.css">
 	<script src="jonesys.js" type="text/javascript"></script>
 </head>
 <body>
@@ -38,7 +39,7 @@
     <h3>Viewing Current Users</h3>
     <div class = "users">
         <?php foreach($results as $result): ?>
-        <p>User Email: <?=$result['email']?> </p><br>
+        <p>User Email: <?=$result['email']?> </p> <a href="edituser.php?id=<?=$result['id'] ?>">edit</a> <br>
         <?php endforeach ?>
     </div>
     
