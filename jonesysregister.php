@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Jonesy's Resturaunt + Lounge | Reservation</title>
-	<link rel="stylesheet" type="text/css" href="jonesysreservation.css">
+	<link rel="stylesheet" type="text/css" href="reservation_register_login_users.css">
 	<script src="jonesys.js" type="text/javascript"></script>
 </head>
 <body>

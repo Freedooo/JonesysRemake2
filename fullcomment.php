@@ -32,6 +32,8 @@
         $statement->execute();
         header("Location: fullcomment.php?id=$getID");
     }
+
+    
 ?>
 
 
@@ -43,7 +45,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="main.js"></script>
 	<title>Jonesy's Resturaunt + Lounge | Full Comment</title>
-	<link rel="stylesheet" type="text/css" href="jonesysmenu.css">
+	<link rel="stylesheet" type="text/css" href="menu_review_comment.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
     <div id ="heading">
@@ -72,16 +75,19 @@
     </section>
 
     <div class = 'sub_comment'>
-    <?php foreach($subcomments as $subcomment): ?>
-        <p><?=$subcomment['comment']?></p>
+		<?php foreach($subcomments as $subcomment): ?>
+			<p><?=$subcomment['comment']?></p>
 
-    <?php endforeach ?>
-    </div>
-    <form action="fullcomment.php?id=<?=$review[0]['id'] ?>" method ='POST'>
-		<p>Comment:</p>
-		<p><textarea name="comment" id="" cols="25" rows="5"></textarea></p>
-		<button type="submit" id="submit" name ='command' value ='submit_comment'>Comment</button>
-	</form>
+		<?php endforeach ?>
+	</div>
+	<div class = 'comment_on_review'>
+		<form action="fullcomment.php?id=<?=$review[0]['id'] ?>" method ='POST'>
+			<p>Write a comment!</p>
+			<p><textarea name="comment" id="" cols="25" rows="5"></textarea></p>
+			<button type="submit" id="submit" name ='command' value ='submit_comment'>Comment</button>
+		</form>
+	</div>
+    
 	
 
 </body>

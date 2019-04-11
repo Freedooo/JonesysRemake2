@@ -85,6 +85,7 @@ html{
 {
 	display: flex;
 	justify-content: center;
+	font-family: 'Roboto', sans-serif;
 
 }
 
@@ -99,6 +100,9 @@ html{
 {
 	font-size: 1.5em;
 	text-align: center;
+	background-color: white;
+    width: 800px;
+    margin: 2px auto;
 	
 }
 #comment input,textarea
@@ -106,6 +110,10 @@ html{
 	width:50%;
 	margin: 0px auto;
 	display: flex;
+	
+}
+#comment label,p,h1{
+	font-family: 'Roboto', sans-serif;
 }
 
 input , textarea ,select,button
@@ -139,10 +147,33 @@ button{
 	text-indent: 2em;
 }
 
+#full_comment{
+	padding:5px;
+}
+
 #full_comment,.sub_comment{
 	background-color:white;
 	width:800px;
 	margin:0px auto;
+	
 }
+.sub_comment p{
+	padding: 10px;
+}
+#full_comment p
+{
+	text-indent: 2em;	
+}
+
+#review_login_error{
+	background-color: white;
+}
+.comment_on_review p {
+	font-family: 'Roboto', sans-serif;
+	color:white;
+	text-align: center;
+	font-size: 1.3em;
+}
+
 
 

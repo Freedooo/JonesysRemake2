@@ -92,8 +92,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="main.js"></script>
-	<title>Jonesy's Resturaunt + Lounge | Menus</title>
-	<link rel="stylesheet" type="text/css" href="jonesysmenu.css">
+	<title>Jonesy's Resturaunt + Lounge | Reviews</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="menu_review_comment.css">
 </head>
 <body>
 
@@ -115,11 +116,6 @@
 		</ul>
 	</nav>
 
-	<form action="jonesysreviews.php" method = "POST">
-			<label for="search">Seach by Title:</label>
-			<input type='text' name='search' id='search'>
-			<input type="submit" name = "command" value = "search">
-	</form>
 	<?php if(isset($_SESSION['LoggedIn'])): ?>
 	<div class = "review">
 		<?php foreach($reviews as $review) :?>
@@ -165,12 +161,14 @@
 		
     </div>
 
-		<?php elseif(!isset($_SESSION['LoggedIn'])): ?>
-		<div id = 'review_login_error'>
-			<h3>You must Sign in to make a review <?= phpversion() ?></h3>
+		
+		<div id = 'review_login_error' >
+			<?php elseif(!isset($_SESSION['LoggedIn'])): ?>
+				<h3 >You must Sign in to make a review</h3>
+			<?php endif ?>
 		</div>
 			
-		<?php endif ?>
+		
 
 		
 </body>

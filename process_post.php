@@ -132,6 +132,30 @@
         header('Location: jonesysreviews.php');
         exit();
     }
+
+    if($_POST['command'] == 'delete_user')
+    {
+        
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+        $query = "DELETE FROM users WHERE id = :id";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        header("Location: viewusers.php?=$id");
+        exit();
+    }
+    if($_POST['command']=='update_user')
+    {
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+        $updateQuery = "UPDATE users SET email = :email WHERE id = :id";
+        $statement = $db->prepare($updateQuery);  
+        $statement->bindValue(':email', $email);  
+        $statement->bindValue(':id',$id, PDO::PARAM_INT);
+        $statement->execute(); 
+        header('Location: viewusers.php');
+        exit();
+    }
     
 ?>
 
@@ -141,7 +165,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Jonesy's Resturaunt + Lounge | Reservation</title>
-	<link rel="stylesheet" type="text/css" href="jonesysreservation.css">
+	<link rel="stylesheet" type="text/css" href="reservation_register_login_users.css">
 	<script src="jonesys.js" type="text/javascript"></script>
 </head>
 <body>
@@ -167,15 +191,6 @@
         <h3><?=$message?></h3>
     </div>
     <?php endif ?>
-	<footer>
-		<nav id = "footerNav">
-			<ul>
-				<li><a href="index.html">Home</a></li>
-				<li><a href="jonesysmenu.html">Menu</a></li>
-				<li><a href="jonesysreservation.html">Reservation</a></li>
-			</ul>
-		</nav>
-	</footer>
 </body>
 <footer>
 		<nav id = "footerNav">

@@ -10,8 +10,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>Jonesy's Resturaunt + Lounge | Reservation</title>
-	<link rel="stylesheet" type="text/css" href="jonesysreservation.css">
+	<title>Jonesy's Resturaunt + Lounge | Login</title>
+	<link rel="stylesheet" type="text/css" href="reservation_register_login_users.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<script src="jonesys.js" type="text/javascript"></script>
 </head>
 <body>

@@ -64,6 +64,7 @@ html{
 {
 	display: flex;
 	justify-content: center;
+	font-family: 'Roboto', sans-serif;
 
 }
 section h3,h3
@@ -131,9 +132,16 @@ input:focus ,textarea:focus ,select:focus
 	margin: 0px auto;
 	display: flex;
 }
+#register label
+{
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.3em;
+}
 
 #login,#comment
 {
+	font-size: 1.3em;
+	font-family: 'Roboto', sans-serif;
 	text-align: center;
 	color: white;
 }
