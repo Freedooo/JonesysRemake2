@@ -155,7 +155,25 @@ input:focus ,textarea:focus ,select:focus
 }
 .users
 {
+	font-family: 'Roboto', sans-serif;
 	background-color: white;
+	width:800px;
+	margin:0px auto;
+}
+#reservation_table_data{
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.3em;
+	color:black;
+	background-color: white;
+	margin: 0px auto;
+
+}
+
+.viewreservation_buttons{
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.3em;
+	text-align: center;
+	background:white;
 	width:800px;
 	margin:0px auto;
 }
